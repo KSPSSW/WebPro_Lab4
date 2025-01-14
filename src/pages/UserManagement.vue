@@ -28,7 +28,7 @@
     <q-table :columns="columns" :rows="users">
       <template v-slot:body-cell-operation="{ row }">
         <q-btn flat icon="edit" @click="edit(row)"></q-btn>
-        <q-btn flat icon="delete"></q-btn>
+        <q-btn flat icon="delete" @click="remove(row)"></q-btn>
       </template>
     </q-table>
   </q-page>
@@ -98,10 +98,20 @@ function onSubmit() {
     users.value.push({ id: lastUserId++, email: email.value, password: password.value })
   } else {
     //edit
+    const index = users.value.findIndex((item) => item.id === id.value)
+    users.value[index]!.id = id.value
+    users.value[index]!.email = email.value
+    users.value[index]!.password = password.value
   }
 
   onReset()
 }
+
+function remove(row: User) {
+  const index = users.value.findIndex((item) => item.id === row.id)
+  users.value.splice(index, 1)
+}
+
 function onReset() {
   id.value = 0
   email.value = ''
