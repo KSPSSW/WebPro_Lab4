@@ -11,10 +11,17 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [{ path: '', component: () => import('pages/FirstPage.vue') }],
   },
+
   {
     path: '/pos',
     component: () => import('layouts/FullScreen.vue'),
     children: [{ path: '', component: () => import('pages/POSPage.vue') }],
+  },
+
+  {
+    path: '/user-page',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/UserManagement.vue') }],
   },
 
   // Always leave this as last one,
